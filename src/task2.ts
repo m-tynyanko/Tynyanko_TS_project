@@ -12,7 +12,7 @@ class Pizza {
       this.hasSauce = hasSauce;
       this.hasCheese = hasCheese;
   }
-  bake() {
+  bake(): void {
       setTimeout(console.log, this.bakeTime, 'Enjoy your pizza!');
   }
 }
@@ -36,28 +36,40 @@ class Pasta {
       this.hasSauce = hasSauce;
    }
 
-  cook() {
+  cook(): void {
       setTimeout(console.log, this.cookTime, 'Enjoy your pasta!');
   }
 }
 
+type Dishes = Pasta | Pizza
+
 class Kitchen {
-  makeDish(dish) {
+  makeDish(dish: Dishes): void {
       // эту часть надо переделать
-      if ('bake' in dish) {
-          dish.bake();
-          return dish;
-      } else if ('cook' in dish) {
-          dish.cook();
-          return dish;
-      }
-      throw new Error('Unknown dish');
+
+    if ('bake' in dish) {
+        dish.bake();
+    } else if ('cook' in dish) {
+        dish.cook();
+    } else {
+        throw new Error('Unknown dish');
+    }
+
+    //   if ('bake' in dish) {
+    //       dish.bake();
+    //       return dish;
+    //   } else if ('cook' in dish) {
+    //       dish.cook();
+    //       return dish;
+    //   }
+      
   }
 }
 
 const kitchen = new Kitchen();
 const pizza = new Pizza(true, true, false);
-const pasta = new Pasta('spagetti', true, true);
+const pasta = new Pasta(PastaTypes.spagetti, true, true);
 
+kitchen.makeDish(pizza);
 kitchen.makeDish(pasta);
-kitchen.makeDish(pasta);
+console.log('baker' in pizza)
