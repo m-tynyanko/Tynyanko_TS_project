@@ -9,21 +9,19 @@ enum UserRoles {
     moderator = 'moderator',
     user = 'user'
 }
-type Id = number | symbol;
-
 interface userInterface {
-    id: Id;
+    id: number;
     login: string;
     role: UserRoles;
 }
-
 const user: userInterface = {
     id: 1,
     login: 'test',
     role: UserRoles.user,
   }
-  
-  const checkPermissionsDecorator = (roles: UserRoles[]): (user: userInterface) => boolean => {
+type CheckFunction = (user: userInterface) => boolean;
+
+  const checkPermissionsDecorator = (roles: UserRoles[]): CheckFunction => {
     
     return (user: userInterface): boolean => {
         return roles.includes(user.role);
