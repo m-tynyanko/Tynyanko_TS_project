@@ -44,25 +44,16 @@ class Pasta {
 type Dishes = Pasta | Pizza
 
 class Kitchen {
-  makeDish(dish: Dishes): void {
-      // эту часть надо переделать
-
+  makeDish(dish: Dishes): Dishes {
     if ('bake' in dish) {
         dish.bake();
+        return dish;
     } else if ('cook' in dish) {
         dish.cook();
+        return dish;
     } else {
         throw new Error('Unknown dish');
-    }
-
-    //   if ('bake' in dish) {
-    //       dish.bake();
-    //       return dish;
-    //   } else if ('cook' in dish) {
-    //       dish.cook();
-    //       return dish;
-    //   }
-      
+    } 
   }
 }
 
