@@ -44,11 +44,11 @@ class Pasta {
 type Dishes = Pasta | Pizza
 
 class Kitchen {
-  makeDish(dish: Dishes): Dishes {
-    if ('bake' in dish) {
+  makeDish(dish: Dishes): Dishes | never {
+    if (dish instanceof Pizza) {
         dish.bake();
         return dish;
-    } else if ('cook' in dish) {
+    } else if (dish instanceof Pasta) {
         dish.cook();
         return dish;
     } else {
