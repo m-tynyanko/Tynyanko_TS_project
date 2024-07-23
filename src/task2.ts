@@ -1,11 +1,34 @@
 // Виды пасты - spagetti/penne/macaroni
 // Tags: Union, Enum, Narrowing
 
-class Pizza {
+interface italianFood {
+  hasSauce: boolean;
+  hasCheese: boolean;
+}
+interface pizzaProps extends italianFood {
+  hasPepperoni: boolean;
+  bakeTime: number;
+  bake(): void;
+}
+interface pastaProps extends italianFood{
+  pastaType: PastaTypes;
+  cookTime: number;
+  cook(): void;
+}
+
+enum PastaTypes {
+  spagetti = 'spagetti',
+  penne = 'penne',
+  macaroni = 'macaroni'
+}
+
+
+
+class Pizza implements pizzaProps {
   hasPepperoni;
   hasSauce;
   hasCheese;
-  bakeTime: number = 30;
+  bakeTime = 30;
 
   constructor(hasPepperoni: boolean, hasSauce: boolean, hasCheese: boolean) {
       this.hasPepperoni = hasPepperoni;
@@ -17,14 +40,7 @@ class Pizza {
   }
 }
 
-enum PastaTypes {
-    spagetti = 'spagetti',
-    penne = 'penne',
-    macaroni = 'macaroni'
-}
-
-
-class Pasta {
+class Pasta implements pastaProps {
   pastaType;
   hasSauce;
   hasCheese;

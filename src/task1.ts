@@ -7,30 +7,29 @@ enum UserRoles {
     moderator = 'moderator',
     user = 'user'
 }
-interface userInterface {
+interface UserInterface {
     id: number;
     login: string;
     role: UserRoles;
 }
-const user: userInterface = {
+const user: UserInterface = {
     id: 1,
     login: 'test',
     role: UserRoles.user,
 }
 
-type T1 = (user: userInterface) => boolean;
+type IncludesFunc = (user: UserInterface) => boolean;
 
-type T2 = (roles: UserRoles[]) => T1;
+type CheckPermissionFunc = (roles: UserRoles[]) => IncludesFunc;
 
 
-const checkPermissionsDecorator: T2 = (roles) => {
-    
+const checkPermissionsDecorator: CheckPermissionFunc = (roles) => {
     return (user) => {
         return roles.includes(user.role);
     }
   }
   
-  const checkPermission = checkPermissionsDecorator([UserRoles.admin, UserRoles.user]);
+  const checkPermission = checkPermissionsDecorator([UserRoles.admin]);
   const hasPermissions = checkPermission(user);
   
   console.log(hasPermissions);

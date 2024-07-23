@@ -1,20 +1,15 @@
-function slice123(str: string, start: number, end?: number):string {
-    let newStr: string = '';
-   
-    let lastIndex: number;
-   
-    if (end) {
-      lastIndex = end > str.length ? str.length : end;
-    } else {
-      lastIndex = str.length;
-    }
-   
-    for (let i = start; i < lastIndex; i++) {
-      newStr += str[i];
-    }
-   
-    return newStr;
-  }
+// есть функция - которая возвращает кортеж
+// в кортеже первый элемент всегда строка, 
+// второй - аргумент функции (может быть абсолютно любого типа)
 
-  let str: string = "abc123";
-  console.log(slice123(str, 3))
+
+
+interface Fuu {
+    <T>(a: T): [string, T]
+}
+
+const fu: Fuu = (a) => ['hi', a]
+console.log(fu(1))
+console.log(fu('1'))
+console.log(fu(true))
+// нужно ее типизировать
