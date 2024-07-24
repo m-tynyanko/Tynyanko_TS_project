@@ -1,7 +1,7 @@
 // Tags: Generic, Union
 
 class Queue {
-    tasks: Task[] = [];
+    tasks: Task<string | number>[] = [];
    
     delay: number = 10;
    
@@ -17,7 +17,7 @@ class Queue {
          this.runQueue();
      }
    
-     addJob(task: Task): number {
+     addJob(task: Task<string | number>): number {
          return this.tasks.push(task);
      }
    
@@ -29,15 +29,13 @@ class Queue {
          this.delay = time;
      }
    }
-   
-   type TaskType = number | string;
+  
 
 
-   
-   class Task {
-     value;
-   
-     constructor(value: TaskType) {
+
+   class Task<T> {
+     value:T;
+     constructor(value: T) {
          this.value = value;
      }
    }

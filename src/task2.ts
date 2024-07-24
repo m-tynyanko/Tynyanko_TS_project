@@ -22,8 +22,6 @@ enum PastaTypes {
   macaroni = 'macaroni'
 }
 
-
-
 class Pizza implements pizzaProps {
   hasPepperoni;
   hasSauce;
